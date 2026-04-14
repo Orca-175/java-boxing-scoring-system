@@ -15,14 +15,18 @@ public class ScoreKeeper {
     ScoreWatcher scoreWatcher = new ScoreWatcher(this); 
 
     // Button states
-    boolean firstJudge = false;
-    boolean secondJudge = false;
+    boolean[] judgeStates = {false, false, false};
 
-    JLabel firstButtonLabel = new JLabel(String.valueOf(firstJudge));
-    JButton firstButton = new JButton("Trigger");
-
-    JLabel secondButtonLabel = new JLabel(String.valueOf(secondJudge));
-    JButton secondButton = new JButton("Trigger");
+    JLabel[] buttonLabels = {
+        new JLabel(String.valueOf(judgeStates[0])), 
+        new JLabel(String.valueOf(judgeStates[1])),
+        new JLabel(String.valueOf(judgeStates[2])),
+    };
+    JButton[] judgeButtons = {
+        new JButton("Trigger"), 
+        new JButton("Trigger"),
+        new JButton("Trigger"),
+    };
 
     ScoreKeeper() {
         // Frame setup
@@ -34,29 +38,54 @@ public class ScoreKeeper {
         JPanel rootPanel = new JPanel();
         rootPanel.setLayout(new GridLayout(1, 2));
 
-        // Button 1 and label
-        JPanel firstButtonPanel = new JPanel();
-        firstButtonPanel.setLayout(new GridLayout(2, 1));
-        firstButtonPanel.add(this.firstButtonLabel);
+        // Button panels
+        JPanel[] buttonPanels = {
+            new JPanel(), 
+            new JPanel(),
+            new JPanel(),
+        };
+        buttonPanels[0].setLayout(new GridLayout(2, 1));
+        buttonPanels[0].add(this.buttonLabels[0]);
+        buttonPanels[1].setLayout(new GridLayout(2, 1));
+        buttonPanels[1].add(this.buttonLabels[1]);
+        buttonPanels[2].setLayout(new GridLayout(2, 1));
+        buttonPanels[2].add(this.buttonLabels[2]);
 
-        this.firstButton.addActionListener(e -> {
-            ScoreButtonHandler scoreButtonHandler = new ScoreButtonHandler(this, this.firstButton, 1);
+        // Button 1
+        this.judgeButtons[0].addActionListener(e -> {
+            ScoreButtonHandler scoreButtonHandler = new ScoreButtonHandler(
+                this, 
+                this.judgeButtons[0], 
+                0
+            );
             scoreButtonHandler.start();
         });
-        firstButtonPanel.add(firstButton);
-        rootPanel.add(firstButtonPanel);
+        buttonPanels[0].add(judgeButtons[0]);
+        rootPanel.add(buttonPanels[0]);
 
-        // Button 2 and label
-        JPanel secondButtonPanel = new JPanel();
-        secondButtonPanel.setLayout(new GridLayout(2, 1));
-        secondButtonPanel.add(this.secondButtonLabel);
-
-        this.secondButton.addActionListener(e -> {
-            ScoreButtonHandler scoreButtonHandler = new ScoreButtonHandler(this, this.secondButton, 2);
+        // Button 2
+        this.judgeButtons[1].addActionListener(e -> {
+            ScoreButtonHandler scoreButtonHandler = new ScoreButtonHandler(
+                this, 
+                this.judgeButtons[1], 
+                1
+            );
             scoreButtonHandler.start();
         });
-        secondButtonPanel.add(secondButton);
-        rootPanel.add(secondButtonPanel);
+        buttonPanels[1].add(judgeButtons[1]);
+        rootPanel.add(buttonPanels[1]);
+
+        // Button 3
+        this.judgeButtons[2].addActionListener(e -> {
+            ScoreButtonHandler scoreButtonHandler = new ScoreButtonHandler(
+                this, 
+                this.judgeButtons[2], 
+                2
+            );
+            scoreButtonHandler.start();
+        });
+        buttonPanels[2].add(judgeButtons[2]);
+        rootPanel.add(buttonPanels[2]);
 
         // isScoreRecorded label
         rootPanel.add(isScoreRegisteredLabel);
@@ -66,19 +95,11 @@ public class ScoreKeeper {
     }
 
     void toggleJudge(int judge) {
-        if (judge == 1) {
-            this.firstJudge = this.firstJudge ? false : true;
-        } else if (judge == 2) {
-            this.secondJudge = this.secondJudge ? false : true;
-        }
+        this.judgeStates[judge] = this.judgeStates[judge] ? false : true;
     }
 
     void buttonLabelSetText(int judge) {
-        if (judge == 1) {
-            this.firstButtonLabel.setText(String.valueOf(this.firstJudge));
-        } else if (judge == 2) {
-            this.secondButtonLabel.setText(String.valueOf(this.secondJudge));
-        }
+        this.buttonLabels[judge].setText(String.valueOf(this.judgeStates[judge]));
     }
 
     void isScoreRegisteredLabelSetText() {

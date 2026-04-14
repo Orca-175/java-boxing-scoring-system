@@ -6,11 +6,12 @@ public class ScoreWatcher {
     }
 
     public void updateScore() {
-        if (this.scoreKeeper.firstJudge == true && this.scoreKeeper.secondJudge == true) {
-            this.scoreKeeper.isScoreRegistered = true;
-        } else {
-            this.scoreKeeper.isScoreRegistered = false;
+        int buttonDownCount = 0;
+        for (boolean judge : this.scoreKeeper.judgeStates) {
+            buttonDownCount = judge ? buttonDownCount + 1 : buttonDownCount;
         }
+
+        this.scoreKeeper.isScoreRegistered = buttonDownCount > 1 ? true : false;
         scoreKeeper.isScoreRegisteredLabelSetText();
     }
 }
