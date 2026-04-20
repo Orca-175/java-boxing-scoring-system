@@ -1,17 +1,10 @@
 public class ScoreWatcher {
-    ScoreKeeper scoreKeeper;
-
-    ScoreWatcher(ScoreKeeper scoreKeeper) {
-        this.scoreKeeper = scoreKeeper;
-    }
-
-    public void updateScore() {
+    public static boolean shouldScoreRegister() {
         int buttonDownCount = 0;
-        for (boolean judge : this.scoreKeeper.judgeStates) {
-            buttonDownCount = judge ? buttonDownCount + 1 : buttonDownCount;
+        for (boolean judgeState : ScoreClientHandler.getJudgeStates()) {
+            buttonDownCount = judgeState ? buttonDownCount + 1 : buttonDownCount;
         }
 
-        this.scoreKeeper.isScoreRegistered = buttonDownCount > 1 ? true : false;
-        scoreKeeper.isScoreRegisteredLabelSetText();
+        return buttonDownCount >= 2 ? true : false;
     }
 }
