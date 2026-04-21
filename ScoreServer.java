@@ -17,7 +17,7 @@ public class ScoreServer {
             }
 
         } catch (Exception exception) {
-            System.out.println("Something went wrond ScoreServer: " + exception);
+            System.out.println("Something went wrong ScoreServer: " + exception);
         }
     }
 }

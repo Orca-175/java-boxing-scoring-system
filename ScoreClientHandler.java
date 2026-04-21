@@ -35,7 +35,8 @@ public class ScoreClientHandler extends Thread {
 
                 judgeStates.set(judgeIndex, request);
                 System.out.println("judge " + judgeIndex + ": "  + judgeStates.get(judgeIndex));
-                System.out.println("scoreFor: " + ScoreWatcher.scoreFor());
+                System.out.println("Score registered for: " + ScoreHandler.scoreFor());
+                ScoreHandler.printScores();
                 Thread.sleep(500);
                 judgeStates.set(judgeIndex, "");
             }

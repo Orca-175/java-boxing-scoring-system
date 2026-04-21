@@ -20,13 +20,13 @@ public class JudgeUI extends JFrame {
 
         JButton judgeButton = new JButton("Fighter 1");
         judgeButton.addActionListener((event) -> {
-            judgeClient.buttonDown("fighterOne");
+            judgeClient.buttonDown(Fighters.ONE);
         });
         rootPanel.add(judgeButton);
 
         judgeButton = new JButton("Fighter 2");
         judgeButton.addActionListener((event) -> {
-            judgeClient.buttonDown("fighterTwo");
+            judgeClient.buttonDown(Fighters.TWO);
         });
         rootPanel.add(judgeButton);
 
