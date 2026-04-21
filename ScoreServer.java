@@ -8,14 +8,16 @@ public class ScoreServer {
 
         try {
             serverSocket = new ServerSocket(1337);
+            System.out.println("Server started!");
 
             while (true) {
                 socket = serverSocket.accept();
-                new ScoreClientHandler(socket);
+                System.out.println("Socket connected!");
+                new ScoreClientHandler(socket).start();
             }
 
-        } catch (Exception e) {
-            System.out.println("Something went wrong: " + e);
+        } catch (Exception exception) {
+            System.out.println("Something went wrond ScoreServer: " + exception);
         }
     }
 }

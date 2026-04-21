@@ -20,14 +20,24 @@ public class JudgeClient {
         }
     }
 
-    public void buttonDown() {
+    public void buttonDown(String fighter) {
         try {
-            this.bufferedWriter.write("request");
+            this.bufferedWriter.write(fighter);
             this.bufferedWriter.newLine();
             this.bufferedWriter.flush();
 
-        } catch (Exception e) {
-            System.out.println("Something went wrong with JudgeClient.buttonDown(): " + e);
+        } catch (Exception exception) {
+            System.out.println("Something went wrong with JudgeClient.buttonDown(): " + exception);
+        }
+    }
+
+    public void disconnect() {
+        try {
+            this.bufferedWriter.write("disconnect");
+            this.bufferedWriter.newLine();
+            this.bufferedWriter.flush();
+        } catch (Exception exception) {
+            System.out.println("Something went wrong with JudgeClient.buttonDown(): " + exception);
         }
     }
 }

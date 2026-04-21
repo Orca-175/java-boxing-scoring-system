@@ -6,16 +6,16 @@ import java.net.Socket;
 import java.util.ArrayList;
 
 public class ScoreClientHandler extends Thread {
-    private static ArrayList<Boolean> judgeStates = new ArrayList<Boolean>();
-
+    private static ArrayList<String> judgeStates = new ArrayList<String>();
     int judgeIndex;
+
     Socket socket;
     BufferedReader bufferedReader;
     BufferedWriter bufferedWriter;
 
     ScoreClientHandler(Socket socket) {
         this.socket = socket;
-        judgeStates.add(false);
+        judgeStates.add("");
         judgeIndex = judgeStates.size() - 1;
     }
 
@@ -25,20 +25,27 @@ public class ScoreClientHandler extends Thread {
             bufferedWriter = new BufferedWriter(new OutputStreamWriter(this.socket.getOutputStream()));
 
             while (true) {
-                bufferedReader.readLine();
-                judgeStates.set(judgeIndex, true);
-                System.out.println("judge " + judgeIndex + ": "  + ScoreWatcher.shouldScoreRegister());
-                System.out.println("shouldScoreRegister: " + judgeStates.get(judgeIndex));
+                String request = bufferedReader.readLine();
+
+                if (request.equalsIgnoreCase("disconnect")) {
+                    judgeStates.remove(judgeIndex);
+                    System.out.println("judge " + judgeIndex + " has disconnected from the server.");
+                    break;
+                }
+
+                judgeStates.set(judgeIndex, request);
+                System.out.println("judge " + judgeIndex + ": "  + judgeStates.get(judgeIndex));
+                System.out.println("scoreFor: " + ScoreWatcher.scoreFor());
                 Thread.sleep(500);
-                judgeStates.set(judgeIndex, false);
+                judgeStates.set(judgeIndex, "");
             }
 
-        } catch (Exception e) {
-            System.out.println("Something went wrong: " + e);
+        } catch (Exception exception) {
+            System.out.println("Something went wrong with ScoreClientHandler: " + exception);
         }
     }
 
-    public static ArrayList<Boolean> getJudgeStates() {
+    public static ArrayList<String> getJudgeStates() {
         return judgeStates;
     }
 }
