@@ -1,11 +1,14 @@
+package Server;
 import java.util.ArrayList;
 import java.util.HashMap;
+
+import Constants.Fighters;
 
 public class ScoreHandler {
     private static HashMap<String, Integer> fighterPoints = new HashMap<>();
 
     public static String scoreFor() {
-        ArrayList<String> judgeStates = ScoreClientHandler.getJudgeStates();
+        ArrayList<String> judgeStates = ClientHandler.getJudgeStates();
         int innerLoopStartIndex = 1;
 
         for (String judgeState : judgeStates) {

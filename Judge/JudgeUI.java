@@ -1,3 +1,4 @@
+package Judge;
 import java.awt.Dimension;
 import java.awt.FlowLayout;
 import java.awt.GridBagLayout;
@@ -7,6 +8,8 @@ import java.awt.event.ComponentEvent;
 import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
+
+import Constants.Fighters;
 
 public class JudgeUI extends JFrame {
     JudgeClient judgeClient = new JudgeClient();
@@ -18,13 +21,13 @@ public class JudgeUI extends JFrame {
         JPanel rootPanel = new JPanel();
         rootPanel.setLayout(new FlowLayout());
 
-        JButton judgeButton = new JButton("Fighter 1");
+        JButton judgeButton = new JButton(Fighters.ONE);
         judgeButton.addActionListener((event) -> {
             judgeClient.buttonDown(Fighters.ONE);
         });
         rootPanel.add(judgeButton);
 
-        judgeButton = new JButton("Fighter 2");
+        judgeButton = new JButton(Fighters.TWO);
         judgeButton.addActionListener((event) -> {
             judgeClient.buttonDown(Fighters.TWO);
         });

@@ -1,3 +1,4 @@
+package Server;
 import java.io.BufferedReader;
 import java.io.BufferedWriter;
 import java.io.InputStreamReader;
@@ -5,7 +6,7 @@ import java.io.OutputStreamWriter;
 import java.net.Socket;
 import java.util.ArrayList;
 
-public class ScoreClientHandler extends Thread {
+public class ClientHandler extends Thread {
     private static ArrayList<String> judgeStates = new ArrayList<String>();
     int judgeIndex;
 
@@ -13,7 +14,7 @@ public class ScoreClientHandler extends Thread {
     BufferedReader bufferedReader;
     BufferedWriter bufferedWriter;
 
-    ScoreClientHandler(Socket socket) {
+    ClientHandler(Socket socket) {
         this.socket = socket;
         judgeStates.add("");
         judgeIndex = judgeStates.size() - 1;

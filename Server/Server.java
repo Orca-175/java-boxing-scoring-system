@@ -1,7 +1,8 @@
+package Server;
 import java.net.ServerSocket;
 import java.net.Socket;
 
-public class ScoreServer {
+public class Server {
     public static void main(String[] args) {
         ServerSocket serverSocket;
         Socket socket;
@@ -13,7 +14,7 @@ public class ScoreServer {
             while (true) {
                 socket = serverSocket.accept();
                 System.out.println("Socket connected!");
-                new ScoreClientHandler(socket).start();
+                new ClientHandler(socket).start();
             }
 
         } catch (Exception exception) {
