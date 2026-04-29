@@ -1,4 +1,4 @@
-package Judge;
+package Client;
 import java.io.BufferedReader;
 import java.io.BufferedWriter;
 import java.io.InputStreamReader;
@@ -16,14 +16,14 @@ public class JudgeClient {
             this.bufferedReader = new BufferedReader(new InputStreamReader(socket.getInputStream()));
             this.bufferedWriter = new BufferedWriter(new OutputStreamWriter(socket.getOutputStream()));
 
-        } catch (Exception e) {
-            System.out.println("Something went wrong initializing JudgeClient: " + e);
+        } catch (Exception exception) {
+            System.out.println("Something went wrong initializing JudgeClient: " + exception);
         }
     }
 
-    public void buttonDown(String fighter) {
+    public void buttonDown(String fighterName) {
         try {
-            this.bufferedWriter.write(fighter);
+            this.bufferedWriter.write(fighterName);
             this.bufferedWriter.newLine();
             this.bufferedWriter.flush();
 

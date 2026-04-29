@@ -6,16 +6,20 @@ import java.io.OutputStreamWriter;
 import java.net.Socket;
 import java.util.ArrayList;
 
-public class ClientHandler extends Thread {
+public class JudgeClientHandler extends Thread {
     private static ArrayList<String> judgeStates = new ArrayList<String>();
     int judgeIndex;
+
+    ScoreHandler scoreHandler;
 
     Socket socket;
     BufferedReader bufferedReader;
     BufferedWriter bufferedWriter;
 
-    ClientHandler(Socket socket) {
+    JudgeClientHandler(Socket socket, ScoreHandler scoreHandler) {
         this.socket = socket;
+        this.scoreHandler = scoreHandler;
+
         judgeStates.add("");
         judgeIndex = judgeStates.size() - 1;
     }
@@ -35,9 +39,7 @@ public class ClientHandler extends Thread {
                 }
 
                 judgeStates.set(judgeIndex, request);
-                System.out.println("judge " + judgeIndex + ": "  + judgeStates.get(judgeIndex));
-                System.out.println("Score registered for: " + ScoreHandler.scoreFor());
-                ScoreHandler.printScores();
+                scoreHandler.refreshScores();
                 Thread.sleep(500);
                 judgeStates.set(judgeIndex, "");
             }

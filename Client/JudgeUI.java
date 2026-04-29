@@ -1,4 +1,4 @@
-package Judge;
+package Client;
 import java.awt.Dimension;
 import java.awt.FlowLayout;
 import java.awt.GridBagLayout;
@@ -17,16 +17,19 @@ public class JudgeUI extends JFrame {
     JudgeUI() {
         this.setSize(new Dimension(400, 300));
         this.setLayout(new GridBagLayout());
+        this.setTitle("Judge UI");
 
         JPanel rootPanel = new JPanel();
         rootPanel.setLayout(new FlowLayout());
 
+        // First button
         JButton judgeButton = new JButton(Fighters.ONE);
         judgeButton.addActionListener((event) -> {
             judgeClient.buttonDown(Fighters.ONE);
         });
         rootPanel.add(judgeButton);
 
+        // Second button
         judgeButton = new JButton(Fighters.TWO);
         judgeButton.addActionListener((event) -> {
             judgeClient.buttonDown(Fighters.TWO);
@@ -34,7 +37,6 @@ public class JudgeUI extends JFrame {
         rootPanel.add(judgeButton);
 
         this.add(rootPanel);
-
         this.setVisible(true);
     }
 
