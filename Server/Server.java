@@ -2,14 +2,22 @@ package Server;
 import java.net.ServerSocket;
 import java.net.Socket;
 
+import ConnectionInfo.ConnectionInfo;
+import ConnectionInfo.ServerConnectionInfoUI;
+
 public class Server {
+    
     public static void main(String[] args) {
         ServerSocket serverSocket;
         Socket socket;
+
+        ConnectionInfo connectionInfo = new ConnectionInfo();
         ScoreHandler scoreHandler = new ScoreHandler();
 
+        new ServerConnectionInfoUI(connectionInfo);
+
         try {
-            serverSocket = new ServerSocket(1337);
+            serverSocket = new ServerSocket(connectionInfo.port);
             System.out.println("Server started!");
 
             while (true) {

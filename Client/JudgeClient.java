@@ -5,14 +5,21 @@ import java.io.InputStreamReader;
 import java.io.OutputStreamWriter;
 import java.net.Socket;
 
+import ConnectionInfo.ConnectionInfo;
+import ConnectionInfo.JudgeConnectionInfoUI;
+
 public class JudgeClient {
     Socket socket;
     BufferedReader bufferedReader;
     BufferedWriter bufferedWriter;
 
+    ConnectionInfo connectionInfo = new ConnectionInfo();
+
     JudgeClient() {
+        new JudgeConnectionInfoUI(connectionInfo);
+
         try {
-            this.socket = new Socket("localhost", 1337);
+            this.socket = new Socket(this.connectionInfo.hostname, this.connectionInfo.port);
             this.bufferedReader = new BufferedReader(new InputStreamReader(socket.getInputStream()));
             this.bufferedWriter = new BufferedWriter(new OutputStreamWriter(socket.getOutputStream()));
 

@@ -18,20 +18,21 @@ public class JudgeUI extends JFrame {
         this.setSize(new Dimension(400, 300));
         this.setLayout(new GridBagLayout());
         this.setTitle("Judge UI");
+        this.setLocationRelativeTo(null);
 
         JPanel rootPanel = new JPanel();
         rootPanel.setLayout(new FlowLayout());
 
         // First button
         JButton judgeButton = new JButton(Fighters.ONE);
-        judgeButton.addActionListener((event) -> {
+        judgeButton.addActionListener((_) -> {
             judgeClient.buttonDown(Fighters.ONE);
         });
         rootPanel.add(judgeButton);
 
         // Second button
         judgeButton = new JButton(Fighters.TWO);
-        judgeButton.addActionListener((event) -> {
+        judgeButton.addActionListener((_) -> {
             judgeClient.buttonDown(Fighters.TWO);
         });
         rootPanel.add(judgeButton);

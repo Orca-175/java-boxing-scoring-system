@@ -19,6 +19,7 @@ public class ScoreboardUI extends JFrame {
         this.setSize(new Dimension(400, 300));
         this.setLayout(new GridBagLayout());
         this.setTitle("Scoreboard");
+        this.setLocationRelativeTo(null);
 
         JPanel rootPanel = new JPanel();
         rootPanel.setLayout(new FlowLayout());

@@ -39,7 +39,7 @@ public class JudgeClientHandler extends Thread {
                 }
 
                 judgeStates.set(judgeIndex, request);
-                scoreHandler.scoreFor();
+                scoreHandler.registerScore();
                 scoreHandler.refreshScores();
                 Thread.sleep(500);
                 judgeStates.set(judgeIndex, "");

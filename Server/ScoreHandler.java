@@ -8,7 +8,7 @@ public class ScoreHandler {
     private HashMap<String, Integer> fighterPoints = new HashMap<>();
     private ScoreboardUI scoreboardUI = new ScoreboardUI();
 
-    public String scoreFor() {
+    public String registerScore() {
         ArrayList<String> judgeStates = JudgeClientHandler.getJudgeStates();
         int innerLoopStartIndex = 1;
 
