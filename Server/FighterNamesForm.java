@@ -11,8 +11,14 @@ import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JTextField;
 
+import Fighters.Fighters;
+
 public class FighterNamesForm extends JDialog {
-    FighterNamesForm() {
+    Fighters fighters;
+
+    FighterNamesForm(Fighters fighters) {
+        this.fighters = fighters;
+
         this.setSize(new Dimension(400, 300));
         this.setLayout(new GridBagLayout());
         this.setTitle("Fighter Names");
@@ -45,8 +51,8 @@ public class FighterNamesForm extends JDialog {
         formPanel.setLayout(new FlowLayout(FlowLayout.CENTER));
         JButton submit = new JButton("Submit");
         submit.addActionListener((_) -> {
-            Fighters.ONE = fighterOneTextField.getText();
-            Fighters.TWO = fighterTwoTextField.getText();
+            this.fighters.ONE = fighterOneTextField.getText();
+            this.fighters.TWO = fighterTwoTextField.getText();
             dispose();
         });
         formPanel.add(submit);

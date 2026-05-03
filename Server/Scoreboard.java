@@ -10,10 +10,15 @@ import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 
+import Fighters.Fighters;
+
 public class Scoreboard extends JFrame {
     JLabel[] fighterScores = {new JLabel("0"), new JLabel("0")};
+    Fighters fighters;
 
-    public Scoreboard() {
+    public Scoreboard(Fighters fighters) {
+        this.fighters = fighters;
+
         this.setSize(new Dimension(400, 300));
         this.setLayout(new GridBagLayout());
         this.setTitle("Scoreboard");
@@ -25,7 +30,7 @@ public class Scoreboard extends JFrame {
         // Fighter 1 column panel
         JPanel fighterPanel = new JPanel();
         fighterPanel.setLayout(new GridLayout(0, 1));
-        JLabel fighterLabel = new JLabel(Fighters.ONE);
+        JLabel fighterLabel = new JLabel(this.fighters.ONE);
         fighterPanel.add(fighterLabel);
         fighterPanel.add(fighterScores[0]);
         rootPanel.add(fighterPanel);
@@ -33,7 +38,7 @@ public class Scoreboard extends JFrame {
         // Fighter 2 column panel
         fighterPanel = new JPanel();
         fighterPanel.setLayout(new GridLayout(0, 1));
-        fighterLabel = new JLabel(Fighters.TWO);
+        fighterLabel = new JLabel(this.fighters.TWO);
         fighterPanel.add(fighterLabel);
         fighterPanel.add(fighterScores[1]);
         rootPanel.add(fighterPanel);
@@ -43,7 +48,7 @@ public class Scoreboard extends JFrame {
     }
 
     public void setScores(HashMap<String, Integer> fighterPoints) {
-        fighterScores[0].setText(fighterPoints.getOrDefault(Fighters.ONE, 0).toString());
-        fighterScores[1].setText(fighterPoints.getOrDefault(Fighters.TWO, 0).toString());
+        fighterScores[0].setText(fighterPoints.getOrDefault(this.fighters.ONE, 0).toString());
+        fighterScores[1].setText(fighterPoints.getOrDefault(this.fighters.TWO, 0).toString());
     }
 }

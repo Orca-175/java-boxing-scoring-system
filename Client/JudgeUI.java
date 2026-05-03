@@ -9,8 +9,11 @@ import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 
+import Fighters.Fighters;
+
 public class JudgeUI extends JFrame {
-    JudgeClient judgeClient = new JudgeClient();
+    Fighters fighters = new Fighters();
+    JudgeClient judgeClient = new JudgeClient(fighters);
 
     JudgeUI() {
         this.setSize(new Dimension(400, 300));
@@ -22,16 +25,16 @@ public class JudgeUI extends JFrame {
         rootPanel.setLayout(new FlowLayout());
 
         // First button
-        JButton judgeButton = new JButton(Fighters.ONE);
+        JButton judgeButton = new JButton(this.fighters.ONE);
         judgeButton.addActionListener((_) -> {
-            judgeClient.buttonDown(Fighters.ONE);
+            judgeClient.buttonDown(this.fighters.ONE);
         });
         rootPanel.add(judgeButton);
 
         // Second button
-        judgeButton = new JButton(Fighters.TWO);
+        judgeButton = new JButton(this.fighters.TWO);
         judgeButton.addActionListener((_) -> {
-            judgeClient.buttonDown(Fighters.TWO);
+            judgeClient.buttonDown(this.fighters.TWO);
         });
         rootPanel.add(judgeButton);
 

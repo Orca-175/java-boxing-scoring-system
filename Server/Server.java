@@ -2,6 +2,7 @@ package Server;
 import java.net.ServerSocket;
 import java.net.Socket;
 
+import Fighters.Fighters;
 import ConnectionInfo.ConnectionInfo;
 
 public class Server {
@@ -12,9 +13,10 @@ public class Server {
         ConnectionInfo connectionInfo = new ConnectionInfo();
         new ConnectionInfoForm(connectionInfo);
 
-        new FighterNamesForm();
+        Fighters fighters = new Fighters();
+        new FighterNamesForm(fighters);
 
-        ScoreHandler scoreHandler = new ScoreHandler();
+        ScoreHandler scoreHandler = new ScoreHandler(fighters);
 
         try {
             serverSocket = new ServerSocket(connectionInfo.port);
@@ -23,7 +25,7 @@ public class Server {
             while (true) {
                 socket = serverSocket.accept();
                 System.out.println("Socket connected!");
-                new ClientHandler(socket, scoreHandler).start();
+                new ClientHandler(socket, fighters, scoreHandler).start();
             }
 
         } catch (Exception exception) {

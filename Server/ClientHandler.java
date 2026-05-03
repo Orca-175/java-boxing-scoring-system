@@ -5,9 +5,12 @@ import java.io.ObjectOutputStream;
 import java.net.Socket;
 import java.util.ArrayList;
 
+import Fighters.Fighters;
+
 public class ClientHandler extends Thread {
     private static ArrayList<String> judgeStates = new ArrayList<String>();
     int judgeIndex;
+    Fighters fighters;
 
     ScoreHandler scoreHandler;
 
@@ -15,8 +18,9 @@ public class ClientHandler extends Thread {
     BufferedReader bufferedReader;
     ObjectOutputStream objectOutputStream;
 
-    ClientHandler(Socket socket, ScoreHandler scoreHandler) {
+    ClientHandler(Socket socket, Fighters fighters, ScoreHandler scoreHandler) {
         this.socket = socket;
+        this.fighters = fighters;
         this.scoreHandler = scoreHandler;
 
         judgeStates.add("");
@@ -25,7 +29,7 @@ public class ClientHandler extends Thread {
 
     public void run() {
         try {
-            String[] fighterNames = {Fighters.ONE, Fighters.TWO};
+            String[] fighterNames = {this.fighters.ONE, this.fighters.TWO};
 
             objectOutputStream = new ObjectOutputStream(this.socket.getOutputStream());
             objectOutputStream.writeObject(fighterNames);

@@ -5,15 +5,20 @@ import java.io.OutputStreamWriter;
 import java.net.Socket;
 
 import ConnectionInfo.ConnectionInfo;
+import Fighters.Fighters;
 
 public class JudgeClient {
     Socket socket;
     ObjectInputStream objectInputStream;
     BufferedWriter bufferedWriter;
 
+    Fighters fighters;
+
     ConnectionInfo connectionInfo = new ConnectionInfo();
 
-    JudgeClient() {
+    JudgeClient(Fighters fighters) {
+        this.fighters = fighters;
+
         new ConnectionInfoForm(connectionInfo);
 
         try {
@@ -26,8 +31,8 @@ public class JudgeClient {
             objectInputStream = new ObjectInputStream(socket.getInputStream());
             String[] fighterNames = (String[]) objectInputStream.readObject();
 
-            Fighters.ONE = fighterNames[0];
-            Fighters.TWO = fighterNames[1];
+            this.fighters.ONE = fighterNames[0];
+            this.fighters.TWO = fighterNames[1];
 
         } catch (Exception exception) {
             System.out.println("Something went wrong in JudgeClient while reading fighter names from server: " 

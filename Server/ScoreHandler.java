@@ -2,9 +2,17 @@ package Server;
 import java.util.ArrayList;
 import java.util.HashMap;
 
+import Fighters.Fighters;
+
 public class ScoreHandler {
     private HashMap<String, Integer> fighterPoints = new HashMap<>();
-    private Scoreboard scoreboardUI = new Scoreboard();
+    private Fighters fighters;
+    private Scoreboard scoreboardUI;
+
+    ScoreHandler(Fighters fighters) {
+        this.fighters = fighters;
+        this.scoreboardUI = new Scoreboard(fighters);
+    }
 
     public String registerScore() {
         ArrayList<String> judgeStates = ClientHandler.getJudgeStates();
@@ -30,7 +38,7 @@ public class ScoreHandler {
 
     // Debug
     public void printScores() {
-        System.out.println(Fighters.ONE + ": " + fighterPoints.getOrDefault(Fighters.ONE, 0));
-        System.out.println(Fighters.TWO + ": " + fighterPoints.getOrDefault(Fighters.TWO, 0));
+        System.out.println(this.fighters.ONE + ": " + fighterPoints.getOrDefault(this.fighters.ONE, 0));
+        System.out.println(this.fighters.TWO + ": " + fighterPoints.getOrDefault(this.fighters.TWO, 0));
     }
 }
