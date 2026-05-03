@@ -2,6 +2,7 @@ package io.github.orca_175.server;
 
 import java.awt.Dimension;
 import java.awt.FlowLayout;
+import java.awt.Font;
 import java.awt.GridBagLayout;
 import java.awt.GridLayout;
 import java.util.HashMap;
@@ -9,6 +10,7 @@ import java.util.HashMap;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
+import javax.swing.border.EmptyBorder;
 
 import io.github.orca_175.fighters.Fighters;
 
@@ -22,7 +24,8 @@ public class Scoreboard extends JFrame {
     Scoreboard(Fighters fighters) {
         this.fighters = fighters;
 
-        this.setSize(new Dimension(400, 300));
+        this.setSize(new Dimension(800, 600));
+        this.setExtendedState(JFrame.MAXIMIZED_BOTH);;
         this.setLayout(new GridBagLayout());
         this.setTitle("Scoreboard");
         this.setLocationRelativeTo(null);
@@ -34,16 +37,40 @@ public class Scoreboard extends JFrame {
         JPanel fighterPanel = new JPanel();
         fighterPanel.setLayout(new GridLayout(0, 1));
         JLabel fighterLabel = new JLabel(this.fighters.ONE);
+        fighterLabel.setFont(new Font("SansSerif", Font.PLAIN, 75));
         fighterPanel.add(fighterLabel);
-        fighterPanel.add(fighterScores[0]);
+
+        JPanel scorePanel = new JPanel();
+        scorePanel.setLayout(new FlowLayout(FlowLayout.CENTER));
+        fighterScores[0].setFont(new Font("SansSerif", Font.PLAIN, 100));
+        scorePanel.add(fighterScores[0]);
+        fighterPanel.add(scorePanel);
+
         rootPanel.add(fighterPanel);
+
+        // Spacer
+        JPanel spacer = new JPanel();
+        spacer.setBorder(new EmptyBorder(0, 60, 140, 60));
+
+        JLabel divider = new JLabel("|");
+        divider.setFont(new Font("SansSerif", Font.PLAIN, 100));
+        spacer.add(divider);
+
+        rootPanel.add(spacer);
 
         // Fighter 2 column panel
         fighterPanel = new JPanel();
         fighterPanel.setLayout(new GridLayout(0, 1));
         fighterLabel = new JLabel(this.fighters.TWO);
+        fighterLabel.setFont(new Font("SansSerif", Font.PLAIN, 75));
         fighterPanel.add(fighterLabel);
-        fighterPanel.add(fighterScores[1]);
+
+        scorePanel = new JPanel();
+        scorePanel.setLayout(new FlowLayout(FlowLayout.CENTER));
+        fighterScores[1].setFont(new Font("SansSerif", Font.PLAIN, 100));
+        scorePanel.add(fighterScores[1]);
+        fighterPanel.add(scorePanel);
+
         rootPanel.add(fighterPanel);
 
         this.add(rootPanel);

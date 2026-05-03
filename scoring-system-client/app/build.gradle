@@ -47,6 +47,8 @@ javadoc {
 }
 
 jar {
+    archiveBaseName = "scoring-system-client"
+    archiveVersion = "0.1"
     manifest {
         attributes 'Main-Class': application.mainClass
     }
