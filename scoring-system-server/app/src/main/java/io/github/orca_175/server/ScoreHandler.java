@@ -4,17 +4,29 @@ import java.util.HashMap;
 
 import io.github.orca_175.fighters.Fighters;
 
+/**
+ * Watches and updates the scores of the participating fighters.
+ */
 public class ScoreHandler {
+    /**
+     * A HashMap where the keys are the names of the fighters and the values are their scores. Stores the points held
+     * by each fighter.
+     */
     private HashMap<String, Integer> fighterPoints = new HashMap<>();
-    private Fighters fighters;
-    private Scoreboard scoreboardUI;
+    private Scoreboard scoreboard;
 
+    /**
+     * Creates an instance of ScoreBoard which displays the scores of the match.
+     * @param fighters An instance of Fighters, which contains the names of the participating fighters.
+     */
     ScoreHandler(Fighters fighters) {
-        this.fighters = fighters;
-        this.scoreboardUI = new Scoreboard(fighters);
+        this.scoreboard = new Scoreboard(fighters);
     }
 
-    public String registerScore() {
+    /**
+     * Checks the judgeStates list and gives a point to the fighter in fighterPoints if a score should be registered.
+     */
+    public void registerScore() {
         ArrayList<String> judgeStates = ClientHandler.getJudgeStates();
         int innerLoopStartIndex = 1;
 
@@ -22,23 +34,17 @@ public class ScoreHandler {
             for (String secondJudgeState : judgeStates.subList(innerLoopStartIndex, judgeStates.size())) {
                 if (judgeState.equalsIgnoreCase(secondJudgeState)) {
                     fighterPoints.put(judgeState, fighterPoints.getOrDefault(judgeState, 0) + 1);
-                    return judgeState;
                 }
             }
 
             innerLoopStartIndex++;
         }
-
-        return "";
     }
 
+    /**
+     * Calls scoreboard.setScores() to refresh the scoreboard to reflect the current points of the fighters.
+     */
     public void refreshScores() {
-        scoreboardUI.setScores(fighterPoints);
-    }
-
-    // Debug
-    public void printScores() {
-        System.out.println(this.fighters.ONE + ": " + fighterPoints.getOrDefault(this.fighters.ONE, 0));
-        System.out.println(this.fighters.TWO + ": " + fighterPoints.getOrDefault(this.fighters.TWO, 0));
+        scoreboard.setScores(fighterPoints);
     }
 }

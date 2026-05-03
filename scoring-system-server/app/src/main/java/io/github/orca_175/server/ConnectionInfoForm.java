@@ -13,6 +13,9 @@ import javax.swing.JTextField;
 
 import io.github.orca_175.connectioninfo.ConnectionInfo;
 
+/**
+ * A form that prompts the user for the port from which the server will listen for connections from clients.
+ */
 public class ConnectionInfoForm extends JDialog {
     ConnectionInfo connectionInfo;
 
@@ -42,7 +45,7 @@ public class ConnectionInfoForm extends JDialog {
         formPanel.setLayout(new FlowLayout(FlowLayout.CENTER));
         JButton submit = new JButton("Submit");
         submit.addActionListener((event) -> {
-            connectionInfo.port = Integer.parseInt(portTextField.getText());
+            this.connectionInfo.port = Integer.parseInt(portTextField.getText());
             dispose();
         });
         formPanel.add(submit);

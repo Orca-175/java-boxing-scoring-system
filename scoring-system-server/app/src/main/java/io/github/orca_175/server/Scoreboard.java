@@ -12,11 +12,14 @@ import javax.swing.JPanel;
 
 import io.github.orca_175.fighters.Fighters;
 
+/**
+ * The graphical scoreboard that displays the current points of each fighter in the match.
+ */
 public class Scoreboard extends JFrame {
-    JLabel[] fighterScores = {new JLabel("0"), new JLabel("0")};
-    Fighters fighters;
+    private JLabel[] fighterScores = {new JLabel("0"), new JLabel("0")};
+    private Fighters fighters;
 
-    public Scoreboard(Fighters fighters) {
+    Scoreboard(Fighters fighters) {
         this.fighters = fighters;
 
         this.setSize(new Dimension(400, 300));
@@ -47,6 +50,11 @@ public class Scoreboard extends JFrame {
         this.setVisible(true);
     }
 
+    /**
+     * Updates the scoreboard to reflect the current scores in fighterPoints.
+     * @param fighterPoints A HashMap where the keys are the names of the fighters and the values are their scores.
+     * Stores the points held by each fighter.
+     */
     public void setScores(HashMap<String, Integer> fighterPoints) {
         fighterScores[0].setText(fighterPoints.getOrDefault(this.fighters.ONE, 0).toString());
         fighterScores[1].setText(fighterPoints.getOrDefault(this.fighters.TWO, 0).toString());

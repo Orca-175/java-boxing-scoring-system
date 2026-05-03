@@ -37,13 +37,17 @@ application {
     mainClass = 'io.github.orca_175.server.Server'
 }
 
+tasks.named('test') {
+    // Use JUnit Platform for unit tests.
+    useJUnitPlatform()
+}
+
+javadoc {
+    options.memberLevel = JavadocMemberLevel.PRIVATE
+}
+
 jar {
     manifest {
         attributes 'Main-Class': application.mainClass
     }
-}
-
-tasks.named('test') {
-    // Use JUnit Platform for unit tests.
-    useJUnitPlatform()
 }

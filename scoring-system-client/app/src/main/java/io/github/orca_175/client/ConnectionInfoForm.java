@@ -13,8 +13,11 @@ import javax.swing.JTextField;
 
 import io.github.orca_175.connectioninfo.ConnectionInfo;
 
+/**
+ * A form that prompts the user for the hostname and port through which the client will connect to the server.
+ */
 public class ConnectionInfoForm extends JDialog {
-    ConnectionInfo connectionInfo;
+    private ConnectionInfo connectionInfo;
 
     public ConnectionInfoForm(ConnectionInfo connectionInfo) {
         this.connectionInfo = connectionInfo;
@@ -51,8 +54,8 @@ public class ConnectionInfoForm extends JDialog {
         formPanel.setLayout(new FlowLayout(FlowLayout.CENTER));
         JButton submit = new JButton("Submit");
         submit.addActionListener((event) -> {
-            connectionInfo.hostname = hostnameTextField.getText();
-            connectionInfo.port = Integer.parseInt(portTextField.getText());
+            this.connectionInfo.hostname = hostnameTextField.getText();
+            this.connectionInfo.port = Integer.parseInt(portTextField.getText());
             dispose();
         });
         formPanel.add(submit);

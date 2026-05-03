@@ -13,8 +13,11 @@ import javax.swing.JTextField;
 
 import io.github.orca_175.fighters.Fighters;
 
+/**
+ * A form that prompts the user for the names of each fighter.
+ */
 public class FighterNamesForm extends JDialog {
-    Fighters fighters;
+    private Fighters fighters;
 
     FighterNamesForm(Fighters fighters) {
         this.fighters = fighters;

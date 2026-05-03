@@ -5,6 +5,10 @@ import java.net.Socket;
 import io.github.orca_175.connectioninfo.ConnectionInfo;
 import io.github.orca_175.fighters.Fighters;
 
+/**
+ * The main class of the program that waits for connections from clients and delegates them to instances 
+ * of ClientHandler.
+ */
 public class Server {
     public static void main(String[] args) {
         ServerSocket serverSocket;

@@ -7,15 +7,29 @@ import java.net.Socket;
 import io.github.orca_175.connectioninfo.ConnectionInfo;
 import io.github.orca_175.fighters.Fighters;
 
+/**
+ * The part of each JudgeUI that handles communications with the server.
+ */
 public class JudgeClient {
-    Socket socket;
-    ObjectInputStream objectInputStream;
-    BufferedWriter bufferedWriter;
+    private Socket socket;
+    private ObjectInputStream objectInputStream;
+    private BufferedWriter bufferedWriter;
 
-    Fighters fighters;
+    /**
+     * The object that contains the fighter names passed from the JudgeUI.
+     */
+    private Fighters fighters;
 
-    ConnectionInfo connectionInfo = new ConnectionInfo();
+    /**
+     * An instance of ConnectionInfo which contains the hostname and port required to connect to the server.
+     */
+    private ConnectionInfo connectionInfo = new ConnectionInfo();
 
+    /**
+     * Connects to the server. After connecting, the JudgeClient will receive the fighter names set on the server which
+     * is used to set the labels on the buttons of the UI.
+     * @param fighters
+     */
     JudgeClient(Fighters fighters) {
         this.fighters = fighters;
 
@@ -47,6 +61,11 @@ public class JudgeClient {
         }
     }
 
+    /**
+     * Registers a button down action on one of the fighters. When fired, the method will send the fighter name of the 
+     * button that was pressed to the server.
+     * @param fighterName The fighter name that will be sent to the server.
+     */
     public void buttonDown(String fighterName) {
         try {
             this.bufferedWriter.write(fighterName);
@@ -58,6 +77,9 @@ public class JudgeClient {
         }
     }
 
+    /**
+     * Disconnects a client from the server.
+     */
     public void disconnect() {
         try {
             this.bufferedWriter.write("disconnect");

@@ -9,8 +9,20 @@ import javax.swing.JPanel;
 
 import io.github.orca_175.fighters.Fighters;
 
+/**
+ * The graphical interface of the judges. Includes two buttons that represent each fighter. When clicked, each button
+ * will send a request to the server to register a point for their respective fighter.
+ */
 public class JudgeUI extends JFrame {
-    Fighters fighters = new Fighters();
+    /**
+     * A class which contains the names of the participating fighters. Used to label the buttons of the UI and also 
+     * passed ito JudgeClient.
+     */
+    private Fighters fighters = new Fighters();
+
+    /**
+     * An instance of JudgeClient which handles communications with the server.
+     */
     JudgeClient judgeClient = new JudgeClient(fighters);
 
     JudgeUI() {

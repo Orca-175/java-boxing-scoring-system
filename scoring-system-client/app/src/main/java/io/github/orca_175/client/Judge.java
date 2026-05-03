@@ -5,6 +5,9 @@ import java.awt.event.ComponentEvent;
 
 import javax.swing.JFrame;
 
+/**
+ * The main class of the program which creates an instance of JudgeUI.
+ */
 public class Judge {
     public static void main(String[] args) {
         JudgeUI judgeUI = new JudgeUI();
