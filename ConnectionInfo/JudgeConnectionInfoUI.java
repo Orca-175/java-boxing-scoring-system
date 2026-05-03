@@ -1,6 +1,7 @@
 package ConnectionInfo;
 
 import java.awt.Dimension;
+import java.awt.FlowLayout;
 import java.awt.GridBagLayout;
 import java.awt.GridLayout;
 
@@ -27,6 +28,7 @@ public class JudgeConnectionInfoUI extends JDialog {
 
         // Hostname text field
         JPanel formPanel = new JPanel();
+        formPanel.setLayout(new FlowLayout(FlowLayout.TRAILING));
         formPanel.add(new JLabel("Hostname"));
         JTextField hostnameTextField = new JTextField(10);
         hostnameTextField.setSize(new Dimension(30, 10));
@@ -35,6 +37,7 @@ public class JudgeConnectionInfoUI extends JDialog {
 
         // Port text field
         formPanel = new JPanel();
+        formPanel.setLayout(new FlowLayout(FlowLayout.TRAILING));
         formPanel.add(new JLabel("Port"));
         JTextField portTextField = new JTextField(10);
         portTextField.setSize(new Dimension(30, 10));
@@ -42,13 +45,16 @@ public class JudgeConnectionInfoUI extends JDialog {
         rootPanel.add(formPanel);
 
         // Submit button
+        formPanel = new JPanel();
+        formPanel.setLayout(new FlowLayout(FlowLayout.CENTER));
         JButton submit = new JButton("Submit");
         submit.addActionListener((_) -> {
             connectionInfo.hostname = hostnameTextField.getText();
             connectionInfo.port = Integer.parseInt(portTextField.getText());
             dispose();
         });
-        rootPanel.add(submit);
+        formPanel.add(submit);
+        rootPanel.add(formPanel);
 
         this.add(rootPanel);
         this.setVisible(true);

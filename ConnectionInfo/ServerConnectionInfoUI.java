@@ -1,6 +1,7 @@
 package ConnectionInfo;
 
 import java.awt.Dimension;
+import java.awt.FlowLayout;
 import java.awt.GridBagLayout;
 import java.awt.GridLayout;
 
@@ -27,6 +28,7 @@ public class ServerConnectionInfoUI extends JDialog {
 
         // Port text field
         JPanel formPanel = new JPanel();
+        formPanel.setLayout(new FlowLayout(FlowLayout.TRAILING));
         formPanel.add(new JLabel("Port"));
         JTextField portTextField = new JTextField(10);
         portTextField.setSize(new Dimension(30, 10));
@@ -34,12 +36,15 @@ public class ServerConnectionInfoUI extends JDialog {
         rootPanel.add(formPanel);
 
         // Submit button
+        formPanel = new JPanel();
+        formPanel.setLayout(new FlowLayout(FlowLayout.CENTER));
         JButton submit = new JButton("Submit");
         submit.addActionListener((_) -> {
             connectionInfo.port = Integer.parseInt(portTextField.getText());
             dispose();
         });
-        rootPanel.add(submit);
+        formPanel.add(submit);
+        rootPanel.add(formPanel);
 
         this.add(rootPanel);
         this.setVisible(true);
