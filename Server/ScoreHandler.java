@@ -2,8 +2,6 @@ package Server;
 import java.util.ArrayList;
 import java.util.HashMap;
 
-import Constants.Fighters;
-
 public class ScoreHandler {
     private HashMap<String, Integer> fighterPoints = new HashMap<>();
     private ScoreboardUI scoreboardUI = new ScoreboardUI();

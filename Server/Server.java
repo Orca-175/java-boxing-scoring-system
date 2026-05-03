@@ -3,7 +3,6 @@ import java.net.ServerSocket;
 import java.net.Socket;
 
 import ConnectionInfo.ConnectionInfo;
-import ConnectionInfo.ServerConnectionInfoUI;
 
 public class Server {
     public static void main(String[] args) {
@@ -11,7 +10,7 @@ public class Server {
         Socket socket;
 
         ConnectionInfo connectionInfo = new ConnectionInfo();
-        new ServerConnectionInfoUI(connectionInfo);
+        new ConnectionInfoUI(connectionInfo);
 
         ScoreHandler scoreHandler = new ScoreHandler();
 

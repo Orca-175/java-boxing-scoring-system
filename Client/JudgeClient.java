@@ -1,26 +1,40 @@
 package Client;
-import java.io.BufferedReader;
 import java.io.BufferedWriter;
-import java.io.InputStreamReader;
+import java.io.ObjectInputStream;
 import java.io.OutputStreamWriter;
 import java.net.Socket;
 
 import ConnectionInfo.ConnectionInfo;
-import ConnectionInfo.JudgeConnectionInfoUI;
 
 public class JudgeClient {
     Socket socket;
-    BufferedReader bufferedReader;
+    ObjectInputStream objectInputStream;
     BufferedWriter bufferedWriter;
 
     ConnectionInfo connectionInfo = new ConnectionInfo();
 
     JudgeClient() {
-        new JudgeConnectionInfoUI(connectionInfo);
+        new ConnectionInfoUI(connectionInfo);
 
         try {
             this.socket = new Socket(this.connectionInfo.hostname, this.connectionInfo.port);
-            this.bufferedReader = new BufferedReader(new InputStreamReader(socket.getInputStream()));
+        } catch (Exception exception) {
+            System.out.println("Something went wrong in JudgeClient while connecting to server: " + exception);
+        }
+
+        try {
+            objectInputStream = new ObjectInputStream(socket.getInputStream());
+            String[] fighterNames = (String[]) objectInputStream.readObject();
+
+            Fighters.ONE = fighterNames[0];
+            Fighters.TWO = fighterNames[1];
+
+        } catch (Exception exception) {
+            System.out.println("Something went wrong in JudgeClient while reading fighter names from server: " 
+                + exception);
+        }
+
+        try {
             this.bufferedWriter = new BufferedWriter(new OutputStreamWriter(socket.getOutputStream()));
 
         } catch (Exception exception) {

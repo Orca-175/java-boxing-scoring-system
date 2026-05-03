@@ -1,8 +1,7 @@
 package Server;
 import java.io.BufferedReader;
-import java.io.BufferedWriter;
 import java.io.InputStreamReader;
-import java.io.OutputStreamWriter;
+import java.io.ObjectOutputStream;
 import java.net.Socket;
 import java.util.ArrayList;
 
@@ -14,7 +13,7 @@ public class JudgeClientHandler extends Thread {
 
     Socket socket;
     BufferedReader bufferedReader;
-    BufferedWriter bufferedWriter;
+    ObjectOutputStream objectOutputStream;
 
     JudgeClientHandler(Socket socket, ScoreHandler scoreHandler) {
         this.socket = socket;
@@ -26,8 +25,17 @@ public class JudgeClientHandler extends Thread {
 
     public void run() {
         try {
+            String[] fighterNames = {Fighters.ONE, Fighters.TWO};
+
+            objectOutputStream = new ObjectOutputStream(this.socket.getOutputStream());
+            objectOutputStream.writeObject(fighterNames);
+            objectOutputStream.flush();
+        } catch (Exception exception) {
+            System.out.println("Something went wrong while sending fighter names to client: " + exception);
+        }
+
+        try {
             bufferedReader = new BufferedReader(new InputStreamReader(this.socket.getInputStream()));
-            bufferedWriter = new BufferedWriter(new OutputStreamWriter(this.socket.getOutputStream()));
 
             while (true) {
                 String request = bufferedReader.readLine();

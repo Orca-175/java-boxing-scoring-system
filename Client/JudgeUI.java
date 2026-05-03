@@ -9,8 +9,6 @@ import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 
-import Constants.Fighters;
-
 public class JudgeUI extends JFrame {
     JudgeClient judgeClient = new JudgeClient();
 

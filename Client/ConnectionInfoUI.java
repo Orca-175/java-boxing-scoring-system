@@ -1,4 +1,4 @@
-package ConnectionInfo;
+package Client;
 
 import java.awt.Dimension;
 import java.awt.FlowLayout;
@@ -11,10 +11,12 @@ import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JTextField;
 
-public class ServerConnectionInfoUI extends JDialog {
+import ConnectionInfo.ConnectionInfo;
+
+public class ConnectionInfoUI extends JDialog {
     ConnectionInfo connectionInfo;
 
-    public ServerConnectionInfoUI(ConnectionInfo connectionInfo) {
+    public ConnectionInfoUI(ConnectionInfo connectionInfo) {
         this.connectionInfo = connectionInfo;
 
         this.setSize(new Dimension(400, 300));
@@ -26,8 +28,17 @@ public class ServerConnectionInfoUI extends JDialog {
         JPanel rootPanel = new JPanel();
         rootPanel.setLayout(new GridLayout(0, 1));
 
-        // Port text field
+        // Hostname text field
         JPanel formPanel = new JPanel();
+        formPanel.setLayout(new FlowLayout(FlowLayout.TRAILING));
+        formPanel.add(new JLabel("Hostname"));
+        JTextField hostnameTextField = new JTextField(10);
+        hostnameTextField.setSize(new Dimension(30, 10));
+        formPanel.add(hostnameTextField);
+        rootPanel.add(formPanel);
+
+        // Port text field
+        formPanel = new JPanel();
         formPanel.setLayout(new FlowLayout(FlowLayout.TRAILING));
         formPanel.add(new JLabel("Port"));
         JTextField portTextField = new JTextField(10);
@@ -40,6 +51,7 @@ public class ServerConnectionInfoUI extends JDialog {
         formPanel.setLayout(new FlowLayout(FlowLayout.CENTER));
         JButton submit = new JButton("Submit");
         submit.addActionListener((_) -> {
+            connectionInfo.hostname = hostnameTextField.getText();
             connectionInfo.port = Integer.parseInt(portTextField.getText());
             dispose();
         });
