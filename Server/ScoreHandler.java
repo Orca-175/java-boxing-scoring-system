@@ -4,10 +4,10 @@ import java.util.HashMap;
 
 public class ScoreHandler {
     private HashMap<String, Integer> fighterPoints = new HashMap<>();
-    private ScoreboardUI scoreboardUI = new ScoreboardUI();
+    private Scoreboard scoreboardUI = new Scoreboard();
 
     public String registerScore() {
-        ArrayList<String> judgeStates = JudgeClientHandler.getJudgeStates();
+        ArrayList<String> judgeStates = ClientHandler.getJudgeStates();
         int innerLoopStartIndex = 1;
 
         for (String judgeState : judgeStates) {

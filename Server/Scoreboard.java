@@ -10,10 +10,10 @@ import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 
-public class ScoreboardUI extends JFrame {
+public class Scoreboard extends JFrame {
     JLabel[] fighterScores = {new JLabel("0"), new JLabel("0")};
 
-    public ScoreboardUI() {
+    public Scoreboard() {
         this.setSize(new Dimension(400, 300));
         this.setLayout(new GridBagLayout());
         this.setTitle("Scoreboard");

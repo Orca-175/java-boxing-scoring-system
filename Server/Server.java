@@ -10,7 +10,9 @@ public class Server {
         Socket socket;
 
         ConnectionInfo connectionInfo = new ConnectionInfo();
-        new ConnectionInfoUI(connectionInfo);
+        new ConnectionInfoForm(connectionInfo);
+
+        new FighterNamesForm();
 
         ScoreHandler scoreHandler = new ScoreHandler();
 
@@ -21,7 +23,7 @@ public class Server {
             while (true) {
                 socket = serverSocket.accept();
                 System.out.println("Socket connected!");
-                new JudgeClientHandler(socket, scoreHandler).start();
+                new ClientHandler(socket, scoreHandler).start();
             }
 
         } catch (Exception exception) {

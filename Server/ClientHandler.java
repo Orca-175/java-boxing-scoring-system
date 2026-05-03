@@ -5,7 +5,7 @@ import java.io.ObjectOutputStream;
 import java.net.Socket;
 import java.util.ArrayList;
 
-public class JudgeClientHandler extends Thread {
+public class ClientHandler extends Thread {
     private static ArrayList<String> judgeStates = new ArrayList<String>();
     int judgeIndex;
 
@@ -15,7 +15,7 @@ public class JudgeClientHandler extends Thread {
     BufferedReader bufferedReader;
     ObjectOutputStream objectOutputStream;
 
-    JudgeClientHandler(Socket socket, ScoreHandler scoreHandler) {
+    ClientHandler(Socket socket, ScoreHandler scoreHandler) {
         this.socket = socket;
         this.scoreHandler = scoreHandler;
 

@@ -13,10 +13,10 @@ import javax.swing.JTextField;
 
 import ConnectionInfo.ConnectionInfo;
 
-public class ConnectionInfoUI extends JDialog {
+public class ConnectionInfoForm extends JDialog {
     ConnectionInfo connectionInfo;
 
-    public ConnectionInfoUI(ConnectionInfo connectionInfo) {
+    public ConnectionInfoForm(ConnectionInfo connectionInfo) {
         this.connectionInfo = connectionInfo;
 
         this.setSize(new Dimension(400, 300));

@@ -14,7 +14,7 @@ public class JudgeClient {
     ConnectionInfo connectionInfo = new ConnectionInfo();
 
     JudgeClient() {
-        new ConnectionInfoUI(connectionInfo);
+        new ConnectionInfoForm(connectionInfo);
 
         try {
             this.socket = new Socket(this.connectionInfo.hostname, this.connectionInfo.port);
